@@ -4,6 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var cookieSession = require('cookie-session');
+var FacebookStrategy = require('passport-facebook').Strategy;
+var passport = require('passport');
+require('dotenv').load();
+var unirest = require('unirest');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -20,6 +25,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cookieSession({
+  name: 'session',
+  keys: [process.env.SESSION_KEY]
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
