@@ -5,6 +5,7 @@ exports.up = function(knex, Promise) {
     table.string('name');
     table.string('address');
     table.string('phone');
+    table.string('category');
     table.text('description');
     table.decimal('lat', 10);
     table.decimal('long', 10);
