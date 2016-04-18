@@ -30,9 +30,49 @@ app.use(cookieSession({
   keys: [process.env.SESSION_KEY]
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
+passport.use(new FacebookStrategy({
+ clientID: FACEBOOK_APP_ID,
+ clientSecret: FACEBOOK_APP_SECRET,
+ callbackURL: process.env.HOST + '/auth/facebook/callback'
+}, function(accessToken, refreshToken, profile, done) {
+
+  User.login(profile, function(err, user) {
+    if (err) {
+      return done(err);
+    }
+    else {
+      done(null, user);
+    }
+
+  })
+}));
+
+app.use(passport.session(app.locals.accessToken));
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
+app.use(function (req, res, next) {
+  res.locals.user = req.user
+  next()
+})
+
+app.use(unirest());
 
 app.use('/', routes);
 app.use('/users', users);
+
+app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+  successRedirect: '/',
+  failureRedirect: '/'
+}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
