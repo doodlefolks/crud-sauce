@@ -8,6 +8,7 @@ var cookieSession = require('cookie-session');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var passport = require('passport');
 require('dotenv').load();
+var User = require('models/users.js');
 var unirest = require('unirest');
 
 var routes = require('./routes/index');
@@ -37,7 +38,7 @@ passport.use(new FacebookStrategy({
  callbackURL: process.env.HOST + '/auth/facebook/callback'
 }, function(accessToken, refreshToken, profile, done) {
 
-  User.login(profile, function(err, user) {
+  User.fbLogin(profile, function(err, user) {
     if (err) {
       return done(err);
     }
