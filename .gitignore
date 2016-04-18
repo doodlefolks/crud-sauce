@@ -1,3 +1,7 @@
 node_modules
 config.js
+<<<<<<< HEAD
 npm-debug.log
+=======
+.env
+>>>>>>> maxd-dev
