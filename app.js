@@ -6,8 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cookieSession = require('cookie-session');
 var FacebookStrategy = require('passport-facebook').Strategy;
-var passport = require('passport');
-// var User = require('models/users.js');
+var passport = require('./passport');
 var unirest = require('unirest');
 
 var routes = require('./routes/index');
@@ -47,13 +46,7 @@ passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
     callbackURL: process.env.HOST + '/auth/facebook/callback',
-  }, function(accessToken, refreshToken, profile, done) {
-    process.nextTick(function () {
-      console.log(profile);
-      return done(null, {id: profile.id, displayName: profile.displayName});
-    });
-  }
-));
+  }, passport.authCallback));
 app.use(passport.initialize());
 app.use(passport.session(app.locals.accessToken));
 

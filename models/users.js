@@ -1,17 +1,19 @@
-var express = require('express');
-var app = express();
-var knex = require('knex');
-var Users = knex('users');
-
-
-
-var fbLogin = function (profile) {
-  Users().insert({f_name: profile. , l_name: , provider: , email: , fb_id: })
-  .then( create => {
-
-  })
-};
+var knex = require('../db/knex');
 
 module.exports = {
-
-  }
+  addUser: function (profile) {
+    console.log('test');
+    var f_name = profile.displayName.split(' ')[0];
+    var l_name = profile.displayName.split(' ')[1];
+    return knex('users').insert({
+      f_name: f_name,
+      l_name: l_name,
+      provider: profile.provider,
+      email: profile.email,
+      fb_id: profile.id,
+    });
+  },
+  getByFacebookId: function (id) {
+    return knex('users').where({fb_id: id});
+  },
+};
