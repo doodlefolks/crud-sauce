@@ -7,8 +7,8 @@ exports.up = function(knex, Promise) {
     table.string('phone');
     table.string('category');
     table.text('description');
-    table.decimal('lat', 10);
-    table.decimal('long', 10);
+    table.decimal('lat', 10, 7);
+    table.decimal('long', 10, 7);
     table.integer('neighborhood_id').references('id').inTable('neighborhoods');
   });
 };
