@@ -7,14 +7,16 @@ var bodyParser = require('body-parser');
 var cookieSession = require('cookie-session');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var passport = require('passport');
-require('dotenv').load();
-var User = require('models/users.js');
+// var User = require('models/users.js');
 var unirest = require('unirest');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var auth = require('./routes/auth');
 
 var app = express();
+
+require('dotenv').load();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,30 +28,12 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(cookieSession({
   name: 'session',
   keys: [process.env.SESSION_KEY]
 }));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(passport.initialize());
-passport.use(new FacebookStrategy({
- clientID: FACEBOOK_APP_ID,
- clientSecret: FACEBOOK_APP_SECRET,
- callbackURL: process.env.HOST + '/auth/facebook/callback'
-}, function(accessToken, refreshToken, profile, done) {
-
-  User.fbLogin(profile, function(err, user) {
-    if (err) {
-      return done(err);
-    }
-    else {
-      done(null, user);
-    }
-
-  })
-}));
-
-app.use(passport.session(app.locals.accessToken));
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -59,21 +43,30 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
+passport.use(new FacebookStrategy({
+    clientID: process.env.FACEBOOK_APP_ID,
+    clientSecret: process.env.FACEBOOK_APP_SECRET,
+    callbackURL: process.env.HOST + '/auth/facebook/callback',
+  }, function(accessToken, refreshToken, profile, done) {
+    process.nextTick(function () {
+      console.log(profile);
+      return done(null, {id: profile.id, displayName: profile.displayName});
+    });
+  }
+));
+app.use(passport.initialize());
+app.use(passport.session(app.locals.accessToken));
+
 app.use(function (req, res, next) {
   res.locals.user = req.user
-  next()
-})
+  next();
+});
 
 app.use(unirest());
 
 app.use('/', routes);
 app.use('/users', users);
-
-app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-  successRedirect: '/',
-  failureRedirect: '/'
-}));
+app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
