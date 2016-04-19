@@ -15,9 +15,9 @@
     "express": "~4.13.1",
     "knex": "^0.10.0",
     "morgan": "~1.6.1",
-    "pg": "^4.5.3",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.0",
+    "pg": "^4.5.3",
     "pug": "^2.0.0-alpha6",
     "serve-favicon": "~2.3.0",
     "unirest": "^0.4.2"

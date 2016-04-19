@@ -8,7 +8,7 @@ var cookieSession = require('cookie-session');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var passport = require('passport');
 require('dotenv').load();
-var User = require('models/users.js');
+var User = require('./models/users.js');
 var unirest = require('unirest');
 
 var routes = require('./routes/index');
@@ -32,22 +32,22 @@ app.use(cookieSession({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
-passport.use(new FacebookStrategy({
- clientID: FACEBOOK_APP_ID,
- clientSecret: FACEBOOK_APP_SECRET,
- callbackURL: process.env.HOST + '/auth/facebook/callback'
-}, function(accessToken, refreshToken, profile, done) {
-
-  User.fbLogin(profile, function(err, user) {
-    if (err) {
-      return done(err);
-    }
-    else {
-      done(null, user);
-    }
-
-  })
-}));
+// passport.use(new FacebookStrategy({
+//  clientID: FACEBOOK_APP_ID,
+//  clientSecret: FACEBOOK_APP_SECRET,
+//  callbackURL: process.env.HOST + '/auth/facebook/callback'
+// }, function(accessToken, refreshToken, profile, done) {
+//
+//   User.fbLogin(profile, function(err, user) {
+//     if (err) {
+//       return done(err);
+//     }
+//     else {
+//       done(null, user);
+//     }
+//
+//   })
+// }));
 
 app.use(passport.session(app.locals.accessToken));
 

@@ -1,0 +1,14 @@
+script.
+  $(function() {
+    $( "#accordion" ).accordion();
+  });
+div#accordion
+  each index, key in pageData
+    h3=key
+    div.places
+      each place in index
+        div
+          p #{place.name}
+          p #{place.address}, #{place.phone}
+          p #{place.category}
+          p #{place.description}

@@ -1,5 +1,11 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  header.row
+    div.col-md-3
+      img(src='/assets/pass-theSauce-logo.png')#logo
+  section.row
+    aside.col-md-3
+      a(href='localhost:3000/#no1') test
+    main#sauce.col-md-9
+      include ./includes/accordion.jade
