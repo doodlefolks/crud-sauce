@@ -34,6 +34,7 @@ app.use(cookieSession({
   keys: [process.env.SESSION_KEY]
 }));
 
+
 passport.serializeUser(function(user, done) {
   done(null, user);
 });
