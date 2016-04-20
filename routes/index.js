@@ -1,30 +1,24 @@
 var express = require('express');
 var router = express.Router();
-var knex = require('../db/knex.js')
-
-
-
-
-/* GET home page. */
+var neighborhoodsModel = require('../models/neighborhoods');
+var placesModel = require('../models/places');
 
 router.get('/', function(req, res, next) {
-  knex('neighborhoods').select()
-  .orderBy('name')
-  .then( hoods => {
-    knex('places').select()
-    .then( places => {
-      res.locals.pageData = {};
-      hoods.forEach( hood => {
-        res.locals.pageData[hood.name] = new Array();
-        places.forEach( place => {
-          if (hood.id === place.neighborhood_id) {
-            res.locals.pageData[hood.name].push(place);
-          }
-        });
+  Promise.all([neighborhoodsModel.getAllHoods(), placesModel.getAllPlaces()])
+  .then( data => {
+    var hoods = data[0];
+    var places = data[1];
+    res.locals.pageData = {};
+    hoods.forEach( hood => {
+      res.locals.pageData[hood.name] = new Array();
+      places.forEach( place => {
+        if (hood.id === place.neighborhood_id) {
+          res.locals.pageData[hood.name].push(place);
+        }
       });
-      res.render('index');
     });
-  })
+    res.render('index');
+  });
 });
 
 module.exports = router;
