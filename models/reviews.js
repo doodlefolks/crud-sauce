@@ -9,4 +9,7 @@ module.exports = {
       rating: rating,
     });
   },
+  getReview: function (user_id, place_id) {
+    return knex('reviews').where({user_id: user_id, place_id: place_id});
+  },
 };
