@@ -3,9 +3,9 @@ div#accordion
     h3 #{ key }
     div.places
       div#map
-      div.overflow.col-md-4.pull-right
+      div.placeOverflow.col-md-5.pull-right
         each place in index
-          summary.pull-left.place
+          summary.col-md-10.pull-left.place
             div
               h4 #{place.name}
               h6 #{place.category}
