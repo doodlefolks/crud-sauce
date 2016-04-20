@@ -24,16 +24,29 @@ block content
         p "#{place.description}"
         div#comments
           h3 Comments
-          form(method="POST")
-            textarea(name="comment")
-            span Rating:
-            select(name="rating")
-              option(value=1) 1 - (Terrible)
-              option(value=2) 2
-              option(value=3) 3 - (Average)
-              option(value=4) 4
-              option(value=5) 5 - (Awesome)
-            button Submit
+          if user
+            if pageData.review
+              form(method="POST" action=(`/places/${place.id}?_method=PUT`))
+                textarea(name="comment")=pageData.review.comment
+                span Rating:
+                select(name="rating")
+                  option(value=1 selected = (pageData.review.rating === 1)) 1 - (Terrible)
+                  option(value=2 selected = (pageData.review.rating === 2)) 2
+                  option(value=3 selected = (pageData.review.rating === 3)) 3 - (Average)
+                  option(value=4 selected = (pageData.review.rating === 4)) 4
+                  option(value=5 selected = (pageData.review.rating === 5)) 5 - (Awesome)
+                button Submit
+            else
+              form(method="POST" action=(`/places/${place.id}`))
+                textarea(name="comment")
+                span Rating:
+                select(name="rating")
+                  option(value=1) 1 - (Terrible)
+                  option(value=2) 2
+                  option(value=3) 3 - (Average)
+                  option(value=4) 4
+                  option(value=5) 5 - (Awesome)
+                button Submit
 
       footer.row
         p.text-center All Content Owned by The Stranger

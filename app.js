@@ -8,6 +8,7 @@ var cookieSession = require('cookie-session');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var passport = require('./passport');
 var unirest = require('unirest');
+var methodOverride = require('method-override');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -29,6 +30,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 
 app.use(cookieSession({
   name: 'session',
