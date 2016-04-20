@@ -1,17 +1,28 @@
 extends ../layout.pug
 
 block content
-  a(href="/auth/facebook") Login with Facebook
-  header.row
-    div.col-md-3
-      img(src='/assets/pass-theSauce-logo.png')#logo
-  section.row
-    aside.col-md-3
-      a(href='localhost:3000/#no1') test
-    main#sauce.col-md-9
-      h2 #{place.name}
-      p #{place.address}, #{place.phone}
-      p #{place.category}
-      p #{place.description}
-      div#comments
-        h3 Comments
+
+  section.col-md-12 
+    aside
+      img(src='/assets/pass-theSauce-logo.png')#logo.fixed
+
+    main.col-md-12.pull-right
+
+      header#login.row.text-right
+
+        if user
+          img(src=user.picUrl, alt="Facebook profile picture")
+          p Welcome #{user.displayName}
+        else
+          a(href="/auth/facebook") Login with Facebook
+
+      section#sauce.row1
+        h2 #{place.name}
+        p #{place.address}, #{place.phone}
+        p #{place.category}
+        p "#{place.description}"
+        div#comments
+          h3 Comments
+
+      footer.row
+        p.text-center All Content Owned by The Stranger
