@@ -9,7 +9,6 @@ var knex = require('../db/knex.js')
 
 router.get('/', function(req, res, next) {
   knex('neighborhoods').select()
-  .orderBy('name')
   .then( hoods => {
     knex('places').select()
     .then( places => {
@@ -22,7 +21,7 @@ router.get('/', function(req, res, next) {
           }
         });
       });
-      res.render('index');
+      res.render('index', {places});
     });
   })
 });
