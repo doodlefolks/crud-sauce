@@ -24,9 +24,13 @@ script.
 
     var hood = parseInt(($(event.target).parent())[0].id);
 
+    var divPosition = $('h3:nth-of-type(' + (hood + 1) + ')').offset();
+    $('html, body').animate({scrollTop: (divPosition.top - 500)}, "slow");
+
     $( "#accordion" ).accordion({active: hood});
 
-    var divPosition = $('h3:nth-of-type(' + (hood + 1) + ')').offset();
-    $('html, body').animate({scrollTop: divPosition.top}, "slow");
+
+
+
     console.log(divPosition.top)
   });
