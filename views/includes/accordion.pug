@@ -3,12 +3,12 @@ script.
     $( "#accordion" ).accordion();
   });
 div#accordion
-  each index, key in pageData
-    h3=key
+  each places, hood in pageData
+    h3=hood
     div.places
-      each place in index
+      each place in places
         div
-          p #{place.name}
+          a(href=`/places/${place.id}`) #{place.name}
           p #{place.address}, #{place.phone}
           p #{place.category}
           p #{place.description}
