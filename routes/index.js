@@ -5,8 +5,10 @@ var neighborhoodsModel = require('../models/neighborhoods');
 var placesModel = require('../models/places');
 
 router.get('/', function(req, res, next) {
+  var user = res.locals.user;
+  var accessToken = user ? user.accessToken : '';
   rp({
-    uri: `https://graph.facebook.com/me?access_token=${res.locals.user.accessToken}&fields=picture.type(small)`,
+    uri: `https://graph.facebook.com/me?access_token=${accessToken}&fields=picture.type(small)`,
     json: true,
   }).catch(function (err) {
     res.locals.user = null;
@@ -15,7 +17,6 @@ router.get('/', function(req, res, next) {
     .then( data => {
       var hoods = data[0];
       var places = data[1];
-      var user = res.locals.user;
       if (user) res.locals.user.picUrl = fbInfo.picture.data.url;
       res.locals.pageData = {};
       hoods.forEach( hood => {
