@@ -9,7 +9,11 @@ block content
     main#sauce.col-md-8
       header#login.row.text-right
 
-        a(href="/auth/facebook") Login with Facebook
+        if user
+          img(src=user.picUrl, alt="Facebook profile picture")
+          p Welcome #{user.displayName}
+        else
+          a(href="/auth/facebook") Login with Facebook
 
       section.row
         section
