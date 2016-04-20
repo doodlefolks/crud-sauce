@@ -20,7 +20,7 @@ a {
 
 .places {
   height: 500px;
-  overflow: hidden !important; 
+  overflow: hidden !important;
 }
 
 .place {
@@ -76,6 +76,7 @@ footer {
   left: 185px;
 }
 
+
 div#map {
   height: 40px;
   width: 40px;
@@ -86,5 +87,14 @@ div#map {
 div.overflow {
   max-height: 500px;
   overflow: scroll;
+
+#comments form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#comments form * {
+  margin: 5px 0;
 
 }

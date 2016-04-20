@@ -2,7 +2,8 @@ extends ../layout.pug
 
 block content
 
-  section.col-md-12 
+  script(src="/javascript/places/index.js")
+  section.col-md-12
     aside
       img(src='/assets/pass-theSauce-logo.png')#logo.fixed
 
@@ -23,6 +24,16 @@ block content
         p "#{place.description}"
         div#comments
           h3 Comments
+          form(method="POST")
+            textarea(name="comment")
+            span Rating:
+            select(name="rating")
+              option(value=1) 1 - (Terrible)
+              option(value=2) 2
+              option(value=3) 3 - (Average)
+              option(value=4) 4
+              option(value=5) 5 - (Awesome)
+            button Submit
 
       footer.row
         p.text-center All Content Owned by The Stranger
