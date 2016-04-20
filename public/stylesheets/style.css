@@ -89,6 +89,9 @@ div.overflow {
   overflow: scroll;
   margin-right: 10px;
 
+}
+
+
 #comments form {
   display: flex;
   flex-direction: column;
