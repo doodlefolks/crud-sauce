@@ -24,7 +24,7 @@ a {
 }
 
 .place {
-  margin: 0 0 15px 0; 
+  margin: 0 0 15px 0;
 }
 
 ::-webkit-scrollbar {
@@ -74,4 +74,14 @@ footer {
   position: relative;
   display: inline-block;
   left: 185px;
+}
+
+#comments form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#comments form * {
+  margin: 5px 0;
 }
