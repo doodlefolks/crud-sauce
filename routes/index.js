@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
     json: true,
   }).catch(function (err) {
     res.locals.user = null;
+    user = null;
   }).then(function (fbInfo) {
     Promise.all([neighborhoodsModel.getAllHoods(), placesModel.getAllPlaces()])
     .then( data => {
