@@ -3,17 +3,18 @@ div#accordion
     h3 #{ key }
     div.places
       div#map
-      each place in index
-        summary.col-md-8.pull-left.place
-          div.col-md-6
-            h4 #{place.name}
-            h6 #{place.category}
-            review "#{place.description}"
-            details
-              | #{place.address} <br>
-              | (206) #{place.phone}
-            a(href='/places/' + place.id)#reviewsLink Reviews
-        sumary.col-md-4
+      div.overflow.col-md-4.pull-right
+        each place in index
+          summary.pull-left.place
+            div
+              h4 #{place.name}
+              h6 #{place.category}
+              review "#{place.description}"
+              details
+                | #{place.address} <br>
+                | (206) #{place.phone}
+              a(href='/places/' + place.id)#reviewsLink Reviews
+
 
 
 script.
