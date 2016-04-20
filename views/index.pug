@@ -1,10 +1,14 @@
 extends layout
 
 block content
-  a(href="/auth/facebook") Login with Facebook
   header.row
     div.col-md-3
       img(src='/assets/pass-theSauce-logo.png')#logo
+      if user
+        img(src=user.picUrl, alt="Facebook profile picture")
+        p Welcome #{user.displayName}
+      else
+        a(href="/auth/facebook") Login with Facebook
   section.row
     aside.col-md-3
       a(href='localhost:3000/#no1') test
