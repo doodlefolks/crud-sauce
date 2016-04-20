@@ -1,16 +1,23 @@
 extends layout
 
 block content
-  header.row
-    div.col-md-3
-      img(src='/assets/pass-theSauce-logo.png')#logo
-      if user
-        img(src=user.picUrl, alt="Facebook profile picture")
-        p Welcome #{user.displayName}
-      else
-        a(href="/auth/facebook") Login with Facebook
-  section.row
-    aside.col-md-3
-      a(href='localhost:3000/#no1') test
-    main#sauce.col-md-9
-      include ./includes/accordion.pug
+
+  section.col-md-12
+    aside
+      img(src='/assets/pass-theSauce-logo.png')#logo.fixed
+
+      include ./includes/easyNav.pug
+    main#sauce.col-md-8
+      header#login.row.text-right
+
+        if user
+          img(src=user.picUrl, alt="Facebook profile picture")
+          p Welcome #{user.displayName}
+        else
+          a(href="/auth/facebook") Login with Facebook
+
+      section.row
+        section
+          include ./includes/accordion.pug
+      footer.row
+        p All Content Owned by The Stranger

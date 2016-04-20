@@ -1,14 +1,32 @@
+div#accordion
+  each index, key in pageData
+    h3 #{ key }
+    div.places
+      each place in index
+        summary.col-md-8.pull-left.place
+          div.col-md-6
+            h4 #{place.name}
+            h6 #{place.category}
+            review "#{place.description}"
+            details
+              | #{place.address} <br>
+              | (206) #{place.phone}
+            a(href='/places/' + place.id)#reviewsLink Reviews
+        sumary.col-md-4
+
 script.
+
   $(function() {
     $( "#accordion" ).accordion();
   });
-div#accordion
-  each places, hood in pageData
-    h3=hood
-    div.places
-      each place in places
-        div
-          a(href=`/places/${place.id}`) #{place.name}
-          p #{place.address}, #{place.phone}
-          p #{place.category}
-          p #{place.description}
+
+  $("#easyNav a").click(function(event) {
+
+    var hood = parseInt(($(event.target).parent())[0].id);
+
+    $( "#accordion" ).accordion({active: hood});
+
+    var divPosition = $('h3:nth-of-type(' + (hood + 1) + ')').offset();
+    $('html, body').animate({scrollTop: divPosition.top}, "slow");
+    console.log(divPosition.top)
+  });
