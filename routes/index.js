@@ -4,6 +4,7 @@ var neighborhoodsModel = require('../models/neighborhoods');
 var placesModel = require('../models/places');
 
 router.get('/', function(req, res, next) {
+
   Promise.all([neighborhoodsModel.getAllHoods(), placesModel.getAllPlaces()])
   .then( data => {
     var hoods = data[0];
@@ -16,8 +17,22 @@ router.get('/', function(req, res, next) {
           res.locals.pageData[hood.name].push(place);
         }
       });
+
+  knex('neighborhoods').select()
+  .then( hoods => {
+    knex('places').select()
+    .then( places => {
+      res.locals.pageData = {};
+      hoods.forEach( hood => {
+        res.locals.pageData[hood.name] = new Array();
+        places.forEach( place => {
+          if (hood.id === place.neighborhood_id) {
+            res.locals.pageData[hood.name].push(place);
+          }
+        });
+      });
+      res.render('index', {places});
     });
-    res.render('index');
   });
 });
 
