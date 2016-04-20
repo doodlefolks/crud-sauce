@@ -1,0 +1,17 @@
+extends ../layout.pug
+
+block content
+  a(href="/auth/facebook") Login with Facebook
+  header.row
+    div.col-md-3
+      img(src='/assets/pass-theSauce-logo.png')#logo
+  section.row
+    aside.col-md-3
+      a(href='localhost:3000/#no1') test
+    main#sauce.col-md-9
+      h2 #{place.name}
+      p #{place.address}, #{place.phone}
+      p #{place.category}
+      p #{place.description}
+      div#comments
+        h3 Comments
