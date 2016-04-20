@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
     table.integer('place_id').references('id').inTable('places').notNullable();
     table.text('comment');
     table.integer('rating').notNullable();
+    table.timestamp('created_at').defaultTo(knex.fn.now());
 
     table.unique(['user_id', 'place_id']);
   });
