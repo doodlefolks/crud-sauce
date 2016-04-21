@@ -48,8 +48,11 @@ block content
                   option(value=5) 5 - (Awesome)
                 button Submit
           each comment in comments
-            p=comment.comment
-            p Rating: #{comment.rating}
+            div.comment
+              img(src=comment.pic_url alt="Profile picture for commenter")
+              div.review
+                p=comment.comment
+                p Rating: #{comment.rating}
 
       footer.row
         p.text-center All Content Owned by The Stranger
