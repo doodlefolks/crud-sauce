@@ -20,4 +20,7 @@ module.exports = {
         rating: rating,
       });
   },
+  getAverageRating: function (place_id) {
+    return knex('reviews').avg('rating').where({place_id: place_id});
+  },
 };
