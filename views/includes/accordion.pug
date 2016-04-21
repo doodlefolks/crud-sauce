@@ -1,27 +1,19 @@
-- var counter = 0
 
 div#accordion
-  each hood, hood_index in pageData.hoods
-    h3 hood.name
-    div.places
-      div#map
-      input(class='mapLat' type='hidden' value=hood.lat)
-      input(class='mapLong' type='hidden' value=hood.long)
-      input(class='neighId' type='hidden' value=hood.id)
-      div.placeOverflow.col-md-5.pull-right
+  each hood in pageData.hoods
+    h3=hood.name
+    div.places.container
+      div.placeOverflow
         each place in hood.places
-          summary.col-md-10.pull-left.place
-            div
+          summary.place
+              input(type='hidden' class='placeLat' value=place.lat)
+              input(type='hidden' class='placeLong' value=place.long)
               h4 #{place.name}
               h6 #{place.category}
-              input(class='markerLat' type='hidden' value=place.lat)
-              input(class='markerLong' type='hidden' value=place.long)
-              review "#{place.description}"
+              div#placeDesc "#{place.description}"
               details
                 | #{place.address} <br>
                 | (206) #{place.phone}
               a(href='/places/' + place.id)#reviewsLink Reviews
 
-
-script(src=`https://maps.googleapis.com/maps/api/js?key=${googleapikey}&libraries=places&callback=initMap` async defer)
 script(src="/javascript/accordion-map.js")

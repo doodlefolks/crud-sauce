@@ -3,31 +3,30 @@ extends ../layout.pug
 block content
 
   script(src="/javascript/places/index.js")
-  section.col-md-12
-    aside
-      img(src='/assets/pass-theSauce-logo.png')#logo.fixed
+  section.container.h
+    aside#easyNav
+      img(src='/assets/pass-theSauce-logo.png')#logo
 
-    main.col-md-12.pull-right
+    main.container.v#sauce
 
-      header#login.row.text-right
+      header#login
 
         if user
-          img(src=user.picUrl, alt="Facebook profile picture")
           p Welcome #{user.displayName}
         else
           a(href="/auth/facebook") Login with Facebook
 
-      section#sauce.row1
+      section
         h2 #{place.name}
         p #{place.address}, #{place.phone}
         p #{place.category}
         p "#{place.description}"
         p Average Rating: #{place.avgRating || "No Reviews"}
-        div#comments
+        div.container.v#comments
           h3 Comments
           if user
             if pageData.review
-              form(method="POST" action=(`/places/${place.id}?_method=PUT`))
+              form.container.v(method="POST" action=(`/places/${place.id}?_method=PUT`))
                 textarea(name="comment")=pageData.review.comment
                 span Rating:
                 select(name="rating")
@@ -38,7 +37,7 @@ block content
                   option(value=5 selected = (pageData.review.rating === 5)) 5 - (Awesome)
                 button Submit
             else
-              form(method="POST" action=(`/places/${place.id}`))
+              form.container.v(method="POST" action=(`/places/${place.id}`))
                 textarea(name="comment")
                 span Rating:
                 select(name="rating")
@@ -49,7 +48,7 @@ block content
                   option(value=5) 5 - (Awesome)
                 button Submit
           each comment in comments
-            div.comment
+            div.container.h.comment
               img(src=comment.pic_url alt="Profile picture for commenter")
               div.review
                 p=comment.comment

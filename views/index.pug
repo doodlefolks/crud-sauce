@@ -2,22 +2,24 @@ extends layout
 
 block content
 
-  section.col-md-12
-    aside
-      img(src='/assets/pass-theSauce-logo.png')#logo.fixed
-      div
-        include ./includes/easyNav.pug
-    main#sauce.col-md-8
-      header#login.row.text-right
+  section.container.h
+    aside.container#easyNav.v
+      img(src='/assets/pass-theSauce-logo.png')#logo
+
+      header#login
 
         if user
-          img(src=user.picUrl, alt="Facebook profile picture")
           p Welcome #{user.displayName}
         else
           a(href="/auth/facebook") Login with Facebook
 
-      section.row
-        section
-          include ./includes/accordion.pug
-      footer.row
-        p All Content Owned by The Stranger
+      div
+      | All content Owned and Produced by #[a(href="http://www.thestranger.com/") The Stranger]
+    section.v
+      div#map
+
+    main#sauce.container.v
+      include ./includes/accordion.pug
+
+  script(src=`https://maps.googleapis.com/maps/api/js?key=${googleapikey}&libraries=places&callback=initMap` async defer)
+  script(src="/javascript/accordion-map.js")

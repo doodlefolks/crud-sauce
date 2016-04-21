@@ -25,12 +25,25 @@ $("#easyNav a").click(function(event) {
 
 function initMap() {
     geocoder = new google.maps.Geocoder();
-    var lat = $('.mapLat')[0].value;
-    var long = $('.mapLong')[0].value;
+    var lat = 47.6792000;
+    var long = -122.3860000;
     var defCenter = new google.maps.LatLng(lat, long);
-    console.log(defCenter);
     map = new google.maps.Map(document.getElementById('map'), {
       center: defCenter,
-      zoom: 15
+      zoom: 13
   });
+  for (var i = 0; i < $('.placeLat').length;i++ ){
+    var lat = parseFloat($('.placeLat')[i].value);
+    var long = parseFloat($('.placeLong')[i].value);
+    var spot = {lat: lat, lng: long}
+    function createMarker(x) {
+      var placeLoc = {lat: x.lat, lng: x.lng};
+      var marker = new google.maps.Marker({
+        clicked: false,
+        map: map,
+        position: placeLoc
+      });
+    };
+    createMarker(spot);
+  }
 }

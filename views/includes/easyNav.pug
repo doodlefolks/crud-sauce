@@ -1,5 +1,5 @@
 - var counter = 0
-section#easyNav.fixed
-  each index, key in pageData
+section
+  each hood in pageData.hoods
     p(id = counter++)
-      a(href='/#' + counter) #{key}
+      a(href='/#' + counter)=hood.name
