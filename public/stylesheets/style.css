@@ -36,13 +36,8 @@ a {
   overflow: hidden !important;
 }
 
-#placeDesc {
-  width: 240px;
-}
-
 .place {
   margin: 0 0 15px 0;
-  padding-right: 60%;
 }
 
 
@@ -59,7 +54,7 @@ a {
 #sauce {
   height: 100vh;
   overflow: scroll;
-  padding: 0 50px 0 50px;
+  padding: 0 80px 0 50px;
 }
 
 
@@ -81,7 +76,7 @@ div#map {
 
 div.placeOverflow {
   position:inline-block;
-  width: 50%;
+  /*width: 50%;*/
   /*padding-right: 20%;*/
   /*bottom: 460px;*/
   max-height: 500px;

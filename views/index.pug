@@ -6,9 +6,6 @@ block content
     aside.container#easyNav.v
       img(src='/assets/pass-theSauce-logo.png')#logo
 
-      div
-      | All content Owned and Produced by #[a(href="http://www.thestranger.com/") The Stranger]
-    main#sauce.container.v
       header#login
 
         if user
@@ -16,4 +13,10 @@ block content
         else
           a(href="/auth/facebook") Login with Facebook
 
+      div
+      | All content Owned and Produced by #[a(href="http://www.thestranger.com/") The Stranger]
+    section.v
+      div#map
+
+    main#sauce.container.v
       include ./includes/accordion.pug
