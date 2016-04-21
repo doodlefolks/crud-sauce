@@ -4,6 +4,7 @@
 
 .container {
   display: flex;
+  margin: 0 auto;
 }
 
 .h {
@@ -16,6 +17,7 @@
 
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
 }
 
 a {
@@ -23,13 +25,11 @@ a {
 }
 
 #logo{
+  display: inline-flex;
   width: 150px;
+  margin: 0 auto;
 }
 
-#easyNav {
-  margin: 10px;
-  margin-left: 50px;
-}
 
 .places {
   height: 500px;
@@ -53,15 +53,16 @@ a {
 
 #sauce {
   height: 100vh;
+  width: 40vw;
   overflow: scroll;
-  padding: 0 80px 0 50px;
+  padding: 0 0px 0 50px;
 }
 
 
 #reviewsLink {
   position: relative;
   display: inline-block;
-  left: 185px;
+
 }
 
 div#map {
@@ -102,4 +103,9 @@ div.placeOverflow {
 
 #login {
   margin-top: 50px;
+  text-align: center;
+}
+
+aside.container {
+  text-align: center;
 }

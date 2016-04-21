@@ -3,11 +3,11 @@ extends layout
 block content
 
   section.container.h
-    aside.container#easyNav.v
+    aside.container.v
+      h5 All content Owned and Produced by <br> #[a(href="http://www.thestranger.com/") The Stranger]
       img(src='/assets/pass-theSauce-logo.png')#logo
 
       header#login
-
         if user
           p Welcome #{user.displayName}
           p
@@ -15,8 +15,6 @@ block content
         else
           p
             a(href="/auth/facebook") Login with Facebook
-
-      div All content Owned and Produced by #[a(href="http://www.thestranger.com/") The Stranger]
 
     section.v
 

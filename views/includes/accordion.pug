@@ -18,6 +18,7 @@ div#accordion
               details
                 | #{place.address} <br>
                 | (206) #{place.phone}
-              a(href='/places/' + place.id)#reviewsLink Reviews
+              p
+                a(href='/places/' + place.id) Reviews for #{place.name}
 
 script(src="/javascript/accordion-map.js")
