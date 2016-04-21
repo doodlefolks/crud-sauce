@@ -2,22 +2,18 @@ extends layout
 
 block content
 
-  section.col-md-12
-    aside
-      img(src='/assets/pass-theSauce-logo.png')#logo.fixed
+  section.container.h
+    aside.container#easyNav.v
+      img(src='/assets/pass-theSauce-logo.png')#logo
       div
         include ./includes/easyNav.pug
-    main#sauce.col-md-8
+      p All Content Owned by The Stranger
+    main#sauce.container.v
       header#login.row.text-right
 
         if user
-          img(src=user.picUrl, alt="Facebook profile picture")
           p Welcome #{user.displayName}
         else
           a(href="/auth/facebook") Login with Facebook
 
-      section.row
-        section
-          include ./includes/accordion.pug
-      footer.row
-        p All Content Owned by The Stranger
+      include ./includes/accordion.pug

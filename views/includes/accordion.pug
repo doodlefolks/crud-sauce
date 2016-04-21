@@ -1,9 +1,9 @@
 div#accordion
   each hood in pageData.hoods
     h3=hood.name
-    div.places
+    div.places.container
       div#map
-      div.placeOverflow.col-md-5.pull-right
+      div.placeOverflow
         each place in hood.places
           summary.col-md-10.pull-left.place
             div
@@ -21,19 +21,4 @@ script.
 
   $(function() {
     $( "#accordion" ).accordion();
-  });
-
-  $("#easyNav a").click(function(event) {
-
-    var hood = parseInt(($(event.target).parent())[0].id);
-
-    var divPosition = $('h3:nth-of-type(' + (hood + 1) + ')').offset();
-    $('html, body').animate({scrollTop: (divPosition.top - 500)}, "slow");
-
-    $( "#accordion" ).accordion({active: hood});
-
-
-
-
-    console.log(divPosition.top)
   });
