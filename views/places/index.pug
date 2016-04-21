@@ -7,19 +7,26 @@ block content
     aside#easyNav
       img(src='/assets/pass-theSauce-logo.png')#logo
 
-    main.container.v#sauce
-
       header#login
 
         if user
-          p Welcome #{user.displayName}
+          p
+            a(href='/') Home
+          p
+            Welcome #{user.displayName}
         else
-          a(href="/auth/facebook") Login with Facebook
+          p
+            a(href='/') Home
+          p
+            a(href="/auth/facebook") Login with Facebook
+
+    main.container.v#sauce
+
 
       section
         h2 #{place.name}
+        h3 #{place.category}
         p #{place.address}, #{place.phone}
-        p #{place.category}
         p "#{place.description}"
         p Average Rating: #{place.avgRating || "No Reviews"}
         div.container.v#comments

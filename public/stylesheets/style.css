@@ -23,7 +23,7 @@ a {
 }
 
 #logo{
-  width: 250px;
+  width: 150px;
 }
 
 #easyNav {
@@ -99,4 +99,8 @@ div.placeOverflow {
 }
 .review p {
   margin: 3px 0;
+}
+
+#login {
+  margin-top: 50px;
 }
