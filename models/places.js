@@ -8,6 +8,15 @@ module.exports = {
     return knex('places').where({id: id});
   },
   getPlaceReviews: function (id) {
-    return knex('reviews').where({place_id: id}).orderBy('created_at');
+    return knex('reviews as r')
+      .innerJoin('users as u', 'u.user_id', 'r.user_id')
+      .where({place_id: id})
+      .select([
+        'r.comment',
+        'r.rating',
+        'r.created_at',
+        'u.pic_url'
+      ])
+      .orderBy('r.created_at');
   },
 };
