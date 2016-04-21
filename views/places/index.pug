@@ -28,7 +28,10 @@ block content
         h3 #{place.category}
         p #{place.address}, #{place.phone}
         p "#{place.description}"
-        p Average Rating: #{place.avgRating || "No Reviews"}
+        if isNaN(place.avgRating)
+          p No Reviews
+        else
+          p place.avgRating
         div.container.v#comments
           h3 Comments
           if user
