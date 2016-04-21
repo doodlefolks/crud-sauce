@@ -5,11 +5,10 @@ div#accordion
       div#map
       div.placeOverflow
         each place in hood.places
-          summary.col-md-10.pull-left.place
-            div
+          summary.place
               h4 #{place.name}
               h6 #{place.category}
-              review "#{place.description}"
+              div#placeDesc "#{place.description}"
               details
                 | #{place.address} <br>
                 | (206) #{place.phone}
