@@ -15,9 +15,7 @@
 }
 
 body {
-  padding: 0 50px 0 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-
 }
 
 a {
@@ -26,6 +24,11 @@ a {
 
 #logo{
   width: 250px;
+}
+
+#easyNav {
+  margin: 10px;
+  margin-left: 50px;
 }
 
 .places {
@@ -37,11 +40,11 @@ a {
   margin: 0 0 15px 0;
 }
 
-::-webkit-scrollbar {
+:not(#sauce)::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;
 }
-::-webkit-scrollbar-thumb {
+:not(#sauce)::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background-color: rgba(0,0,0,.5);
     -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
@@ -50,7 +53,7 @@ a {
 #sauce {
   height: 100vh;
   overflow: scroll;
-  /*padding-left: 5%;*/
+  padding: 0 50px 0 50px;
 }
 
 
@@ -59,9 +62,6 @@ a {
 
 }
 
-#easyNav {
-  margin-right: 5%;
-}
 
 ul {
   list-style-type: none;
