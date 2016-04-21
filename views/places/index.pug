@@ -47,6 +47,9 @@ block content
                   option(value=4) 4
                   option(value=5) 5 - (Awesome)
                 button Submit
+          each comment in comments
+            p=comment.comment
+            p Rating: #{comment.rating}
 
       footer.row
         p.text-center All Content Owned by The Stranger

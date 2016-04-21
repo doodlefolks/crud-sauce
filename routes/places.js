@@ -6,17 +6,22 @@ var users = require('../models/users');
 
 router.get('/:index', function (req, res, next) {
   res.locals.pageData = {};
-  places.getPlaceById(req.params.index)
-  .then(function (place) {
-    users.getByFacebookId(res.locals.user.id).then(function (user) {
-      reviews.getReview(user[0].user_id, req.params.index).then(function (review) {
-        if (review[0]) {
-          res.locals.pageData.review = review[0];
-        }
-        res.locals.place = place[0];
-        res.render('places/index');
+  Promise.all([places.getPlaceById(req.params.index), places.getPlaceReviews(req.params.index)])
+  .then(function (data) {
+    res.locals.place = data[0][0];
+    res.locals.comments = data[1];
+    if (res.locals.user) {
+      users.getByFacebookId(res.locals.user.id).then(function (user) {
+        reviews.getReview(user[0].user_id, req.params.index).then(function (review) {
+          if (review[0]) {
+            res.locals.pageData.review = review[0];
+          }
+          res.render('places/index');
+        });
       });
-    });
+    } else {
+      res.render('places/index');
+    }
   });
 });
 
