@@ -1,3 +1,4 @@
+
 div#accordion
   each hood in pageData.hoods
     h3=hood.name
@@ -5,6 +6,8 @@ div#accordion
       div.placeOverflow
         each place in hood.places
           summary.place
+              input(type='hidden' class='placeLat' value=place.lat)
+              input(type='hidden' class='placeLong' value=place.long)
               h4 #{place.name}
               h6 #{place.category}
               div#placeDesc "#{place.description}"
@@ -13,10 +16,4 @@ div#accordion
                 | (206) #{place.phone}
               a(href='/places/' + place.id)#reviewsLink Reviews
 
-
-
-script.
-
-  $(function() {
-    $( "#accordion" ).accordion();
-  });
+script(src="/javascript/accordion-map.js")

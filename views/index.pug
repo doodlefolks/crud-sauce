@@ -21,3 +21,6 @@ block content
 
     main#sauce.container.v
       include ./includes/accordion.pug
+
+  script(src=`https://maps.googleapis.com/maps/api/js?key=${googleapikey}&libraries=places&callback=initMap` async defer)
+  script(src="/javascript/accordion-map.js")
