@@ -11,11 +11,18 @@ router.get('/', function(req, res, next) {
     var hoods = data[0];
     var places = data[1];
     res.locals.pageData = {};
-    hoods.forEach( hood => {
-      res.locals.pageData[hood.name] = new Array();
+    res.locals.pageData.hoods = [];
+    hoods.forEach( (hood, hoodIndex) => {
+      res.locals.pageData.hoods.push({
+        name: hood.name,
+        id: hood.id,
+        lat: hood.lat,
+        long: hood.long,
+        places: [],
+      });
       places.forEach( place => {
-        if (hood.id === place.neighborhood_id) {
-          res.locals.pageData[hood.name].push(place);
+        if (place.neighborhood_id === hood.id) {
+          res.locals.pageData.hoods[hoodIndex].places.push(place);
         }
       });
     });
