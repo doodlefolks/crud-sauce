@@ -1,9 +1,9 @@
 div#accordion
   each index, key in pageData
     h3 #{ key }
-    div.places
+    div.places.container
       div#map
-      div.placeOverflow.col-md-5.pull-right
+      div.placeOverflow
         each place in index
           summary.col-md-10.pull-left.place
             div
@@ -27,8 +27,8 @@ script.
 
     var hood = parseInt(($(event.target).parent())[0].id);
 
-    var divPosition = $('h3:nth-of-type(' + (hood + 1) + ')').offset();
-    $('html, body').animate({scrollTop: (divPosition.top - 500)}, "slow");
+    var divPosition = $('#accordion').offset();
+    $('html, body').animate({scrollTop: (divPosition.top)}, "slow");
 
     $( "#accordion" ).accordion({active: hood});
 
