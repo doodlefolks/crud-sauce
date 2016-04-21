@@ -10,8 +10,11 @@ block content
 
         if user
           p Welcome #{user.displayName}
+          p
+            a(href='/logout') Logout
         else
-          a(href="/auth/facebook") Login with Facebook
+          p
+            a(href="/auth/facebook") Login with Facebook
 
       div All content Owned and Produced by #[a(href="http://www.thestranger.com/") The Stranger]
 

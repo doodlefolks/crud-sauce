@@ -54,6 +54,9 @@ block content
                   option(value=4) 4
                   option(value=5) 5 - (Awesome)
                 button Submit
+          else
+            section
+              | Please login to make comments
           each comment in comments
             div.container.h.comment
               img(src=comment.pic_url alt="Profile picture for commenter")
