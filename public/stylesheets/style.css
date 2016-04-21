@@ -36,9 +36,15 @@ a {
   overflow: hidden !important;
 }
 
+#placeDesc {
+  width: 240px;
+}
+
 .place {
   margin: 0 0 15px 0;
+  padding-right: 60%;
 }
+
 
 :not(#sauce)::-webkit-scrollbar {
     -webkit-appearance: none;
@@ -56,20 +62,6 @@ a {
   padding: 0 50px 0 50px;
 }
 
-
-.fixed {
-  position: fixed;
-
-}
-
-
-ul {
-  list-style-type: none;
-}
-
-footer {
-  margin-top: 100px;
-}
 
 #reviewsLink {
   position: relative;
@@ -90,7 +82,7 @@ div#map {
 div.placeOverflow {
   position:inline-block;
   width: 50%;
-  padding-right: 20%;
+  /*padding-right: 20%;*/
   /*bottom: 460px;*/
   max-height: 500px;
   overflow: scroll;

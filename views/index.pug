@@ -5,11 +5,11 @@ block content
   section.container.h
     aside.container#easyNav.v
       img(src='/assets/pass-theSauce-logo.png')#logo
-      div
 
-      p All Content Owned by The Stranger
+      div
+      | All content Owned and Produced by #[a(href="http://www.thestranger.com/") The Stranger]
     main#sauce.container.v
-      header#login.row.text-right
+      header#login
 
         if user
           p Welcome #{user.displayName}
