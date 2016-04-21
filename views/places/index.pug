@@ -29,9 +29,9 @@ block content
         p #{place.address}, #{place.phone}
         p "#{place.description}"
         if isNaN(place.avgRating)
-          p No Reviews
+          p Average rating: No ratings
         else
-          p place.avgRating
+          p Average rating: #{place.avgRating}
         div.container.v#comments
           h3 Comments
           if user
