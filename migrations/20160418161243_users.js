@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
     table.text('email').unique();
     table.text('provider');
     table.text('fb_id').unique();
+    table.text('pic_url');
   });
 };
 
