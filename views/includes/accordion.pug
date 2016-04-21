@@ -1,10 +1,10 @@
 div#accordion
-  each index, key in pageData
-    h3 #{ key }
+  each hood in pageData.hoods
+    h3 hood.name
     div.places
       div#map
       div.placeOverflow.col-md-5.pull-right
-        each place in index
+        each place in hood.places
           summary.col-md-10.pull-left.place
             div
               h4 #{place.name}
