@@ -96,21 +96,14 @@ div.placeOverflow {
   overflow: scroll;
 }
 
-
-#comments form {
-  display: flex;
-  flex-direction: column;
+#comments {
   align-items: flex-start;
 }
-
 #comments form * {
   margin: 5px 0;
 }
-
 .comment {
-  display: flex;
-  flex-direction: row;
-  margin-top: 5px;
+  align-items: flex-start;
 }
 .review {
   display: flex;
@@ -118,5 +111,5 @@ div.placeOverflow {
   margin-left: 10px;
 }
 .review p {
-  margin-bottom: 3px;
+  margin: 3px 0;
 }
