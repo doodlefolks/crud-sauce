@@ -4,12 +4,12 @@ block content
 
   section.container.h
     aside.container.v
-      h5 All content Owned and Produced by <br> #[a(href="http://www.thestranger.com/") The Stranger]
+      h5.theStranger All content Owned and Produced by <br> #[a(href="http://www.thestranger.com/") The Stranger]
       img(src='/assets/pass-theSauce-logo.png')#logo
 
       header#login
         if user
-          p Welcome #{user.displayName}
+          p Welcome, #{user.displayName}
           p
             a(href='/logout') Logout
         else

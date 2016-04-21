@@ -25,7 +25,7 @@ a {
 }
 
 #logo{
-  display: inline-flex;
+  display: block;
   width: 150px;
   margin: 0 auto;
 }
@@ -106,6 +106,6 @@ div.placeOverflow {
   text-align: center;
 }
 
-aside.container {
+.theStranger {
   text-align: center;
 }
