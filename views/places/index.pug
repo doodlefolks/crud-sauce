@@ -22,6 +22,7 @@ block content
         p #{place.address}, #{place.phone}
         p #{place.category}
         p "#{place.description}"
+        p Average Rating: #{place.avgRating || "No Reviews"}
         div#comments
           h3 Comments
           if user
