@@ -55,3 +55,13 @@ function initMap() {
     createMarker(spot);
   }
 }
+
+for (var j = 0; j < $('.hoodz').length; j++){
+  (function (j){
+    $('.hoodz').eq(j).click(function(){
+      var hLat = parseFloat($('.hoodLat')[j].value);
+      var hLong =parseFloat($('.hoodLong')[j].value);
+      map.setCenter({lat: hLat, lng: hLong});
+    })
+  })(j);
+}
