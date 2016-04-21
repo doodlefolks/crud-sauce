@@ -1,7 +1,9 @@
 
 div#accordion
   each hood in pageData.hoods
-    h3=hood.name
+    input(type='hidden' class='hoodLat' value=hood.lat)
+    input(type='hidden' class='hoodLong' value=hood.long)
+    h3.hoodz=hood.name
     div.places.container
       div.placeOverflow
         each place in hood.places
