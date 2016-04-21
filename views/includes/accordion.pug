@@ -8,6 +8,8 @@ div#accordion
           summary.place
               input(type='hidden' class='placeLat' value=place.lat)
               input(type='hidden' class='placeLong' value=place.long)
+              input(type='hidden' class='name'
+              value=place.name)
               h4 #{place.name}
               h6 #{place.category}
               div#placeDesc "#{place.description}"

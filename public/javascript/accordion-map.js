@@ -30,8 +30,10 @@ function initMap() {
     var defCenter = new google.maps.LatLng(lat, long);
     map = new google.maps.Map(document.getElementById('map'), {
       center: defCenter,
-      zoom: 13
+      zoom: 14
   });
+
+  infowindow = new google.maps.InfoWindow();
   for (var i = 0; i < $('.placeLat').length;i++ ){
     var lat = parseFloat($('.placeLat')[i].value);
     var long = parseFloat($('.placeLong')[i].value);
@@ -43,6 +45,12 @@ function initMap() {
         map: map,
         position: placeLoc
       });
+      (function (i) {
+        google.maps.event.addListener(marker, 'click', function(){
+          infowindow.setContent($('.name')[i].value);
+          infowindow.open(map, this);
+        });
+      })(i);
     };
     createMarker(spot);
   }
