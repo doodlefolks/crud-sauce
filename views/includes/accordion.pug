@@ -1,14 +1,21 @@
+- var counter = 0
+
 div#accordion
-  each hood in pageData.hoods
+  each hood, hood_index in pageData.hoods
     h3 hood.name
     div.places
       div#map
+      input(class='mapLat' type='hidden' value=hood.lat)
+      input(class='mapLong' type='hidden' value=hood.long)
+      input(class='neighId' type='hidden' value=hood.id)
       div.placeOverflow.col-md-5.pull-right
         each place in hood.places
           summary.col-md-10.pull-left.place
             div
               h4 #{place.name}
               h6 #{place.category}
+              input(class='markerLat' type='hidden' value=place.lat)
+              input(class='markerLong' type='hidden' value=place.long)
               review "#{place.description}"
               details
                 | #{place.address} <br>
@@ -16,24 +23,5 @@ div#accordion
               a(href='/places/' + place.id)#reviewsLink Reviews
 
 
-
-script.
-
-  $(function() {
-    $( "#accordion" ).accordion();
-  });
-
-  $("#easyNav a").click(function(event) {
-
-    var hood = parseInt(($(event.target).parent())[0].id);
-
-    var divPosition = $('h3:nth-of-type(' + (hood + 1) + ')').offset();
-    $('html, body').animate({scrollTop: (divPosition.top - 500)}, "slow");
-
-    $( "#accordion" ).accordion({active: hood});
-
-
-
-
-    console.log(divPosition.top)
-  });
+script(src=`https://maps.googleapis.com/maps/api/js?key=${googleapikey}&libraries=places&callback=initMap` async defer)
+script(src="/javascript/accordion-map.js")
