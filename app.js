@@ -9,6 +9,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var passport = require('./passport');
 var unirest = require('unirest');
 var methodOverride = require('method-override');
+var rp = require('request-promise');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -55,8 +56,14 @@ app.use(passport.initialize());
 app.use(passport.session(app.locals.accessToken));
 
 app.use(function (req, res, next) {
-  res.locals.user = req.user
-  next();
+  var accessToken = res.locals.user ? res.locals.user.accessToken : '';
+  rp({uri: 'https://graph.facebook.com/me?accessToken'})
+  .then(function () {
+    res.locals.user = req.user;
+    next();
+  }).catch(function () {
+    next();
+  });
 });
 
 app.use(unirest());
