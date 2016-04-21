@@ -5,7 +5,20 @@ module.exports = {
     return knex('places');
   },
   getPlaceById: function (id) {
-    return knex('places').where({id: id});
+    return knex('places as p')
+      .innerJoin('neighborhoods as n', 'p.neighborhood_id', 'n.id')
+      .select([
+        'p.id',
+        'p.name',
+        'p.address',
+        'p.phone',
+        'p.category',
+        'p.description',
+        'p.lat',
+        'p.long',
+        'n.name as hood_name'
+      ])
+      .where({'p.id': id});
   },
   getPlaceReviews: function (id) {
     return knex('reviews as r')
