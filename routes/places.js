@@ -10,7 +10,6 @@ router.get('/:index', function (req, res, next) {
   .then(function (place) {
     users.getByFacebookId(res.locals.user.id).then(function (user) {
       reviews.getReview(user[0].user_id, req.params.index).then(function (review) {
-        console.log(review[0]);
         if (review[0]) {
           res.locals.pageData.review = review[0];
         }
@@ -22,12 +21,19 @@ router.get('/:index', function (req, res, next) {
 });
 
 router.post('/:index', function (req, res, next) {
-  // res.send(res.locals.user.id);
   users.getByFacebookId(res.locals.user.id).then(function (user) {
     reviews.addReview(user[0].user_id, req.params.index, req.body.comment, req.body.rating).then(function () {
       res.redirect(`/places/${req.params.index}`);
     }).catch(function (err) {
       console.log(err);
+    });
+  });
+});
+
+router.put('/:index', function (req, res, next) {
+  users.getByFacebookId(res.locals.user.id).then(function (user) {
+    reviews.updateReview(user[0].user_id, req.params.index, req.body.comment, req.body.rating).then(function () {
+      res.redirect(`/places/${req.params.index}`);
     });
   });
 });
