@@ -20,11 +20,11 @@ a {
 
 .places {
   height: 500px;
-  overflow: scroll;
+  overflow: hidden !important;
 }
 
 .place {
-  margin: 0 0 15px 0; 
+  margin: 0 0 15px 0;
 }
 
 ::-webkit-scrollbar {
@@ -53,7 +53,7 @@ a {
 
 .fixed {
   position: fixed;
-  overflow: scroll;
+
 }
 
 #easyNav {
@@ -74,4 +74,45 @@ footer {
   position: relative;
   display: inline-block;
   left: 185px;
+}
+
+
+div#map {
+  height: 450px;
+  width: 450px;
+  border: 1px solid black;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+div.placeOverflow {
+  max-height: 500px;
+  overflow: scroll;
+  margin-right: 10px;
+
+}
+
+
+#comments form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#comments form * {
+  margin: 5px 0;
+}
+
+.comment {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+}
+.review {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+.review p {
+  margin-bottom: 3px;
 }

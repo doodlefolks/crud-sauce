@@ -8,6 +8,8 @@ var cookieSession = require('cookie-session');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var passport = require('./passport');
 var unirest = require('unirest');
+var methodOverride = require('method-override');
+var rp = require('request-promise');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -29,6 +31,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 
 app.use(cookieSession({
   name: 'session',
@@ -53,8 +56,14 @@ app.use(passport.initialize());
 app.use(passport.session(app.locals.accessToken));
 
 app.use(function (req, res, next) {
-  res.locals.user = req.user
-  next();
+  var accessToken = req.user ? req.user.accessToken : '';
+  rp({uri: `https://graph.facebook.com/me?access_token=${accessToken}`})
+  .then(function () {
+    res.locals.user = req.user;
+    next();
+  }).catch(function () {
+    next();
+  });
 });
 
 app.use(unirest());
