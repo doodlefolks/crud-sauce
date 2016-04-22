@@ -38,30 +38,38 @@ function initMap() {
     var lat = parseFloat($('.placeLat')[i].value);
     var long = parseFloat($('.placeLong')[i].value);
     var spot = {lat: lat, lng: long}
-    function createMarker(x) {
-      var placeLoc = {lat: x.lat, lng: x.lng};
-      var marker = new google.maps.Marker({
-        clicked: false,
-        map: map,
-        position: placeLoc
+    var placeLoc = {lat: spot.lat, lng: spot.lng};
+    var marker = new google.maps.Marker({
+      clicked: false,
+      map: map,
+      position: placeLoc
+    });
+    (function (i) {
+      google.maps.event.addListener(marker, 'click', function(){
+        infowindow.setContent($('.name')[i].value);
+        infowindow.open(map, this);
       });
-      (function (i) {
-        google.maps.event.addListener(marker, 'click', function(){
-          infowindow.setContent($('.name')[i].value);
-          infowindow.open(map, this);
-        });
-      })(i);
-    };
-    createMarker(spot);
+    })(i);
   }
 }
 
-for (var j = 0; j < $('.hoodz').length; j++){
-  (function (j){
-    $('.hoodz').eq(j).click(function(){
-      var hLat = parseFloat($('.hoodLat')[j].value);
-      var hLong =parseFloat($('.hoodLong')[j].value);
+for (var i = 0; i < $('.hoodz').length; i++){
+  (function (i){
+    $('.hoodz').eq(i).click(function(){
+      var hLat = parseFloat($('.hoodLat')[i].value);
+      var hLong =parseFloat($('.hoodLong')[i].value);
       map.setCenter({lat: hLat, lng: hLong});
-    })
-  })(j);
+    });
+  })(i);
+}
+
+var mapButtons = $('.find-on-map');
+for (var i = 0; i < mapButtons.length; i++) {
+  (function (i) {
+    mapButtons.eq(i).click(function(){
+      var lat = parseFloat($(this).attr('lat'));
+      var long = parseFloat($(this).attr('long'));
+      map.setCenter({lat: lat, lng: long});
+    });
+  })(i);
 }

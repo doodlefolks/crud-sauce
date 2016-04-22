@@ -8,10 +8,9 @@ div#accordion
       div.placeOverflow
         each place in hood.places
           summary.place
-              input(type='hidden' class='placeLat' value=place.lat)
-              input(type='hidden' class='placeLong' value=place.long)
-              input(type='hidden' class='name'
-              value=place.name)
+              input(type='hidden' name=place.name class='placeLat' value=place.lat)
+              input(type='hidden' name=place.name class='placeLong' value=place.long)
+              input(type='hidden' class='name' value=place.name)
               h4 #{place.name}
               h6 #{place.category}
               div#placeDesc "#{place.description}"
@@ -20,5 +19,7 @@ div#accordion
                 | (206) #{place.phone}
               p
                 a(href='/places/' + place.id) Reviews for #{place.name}
+              p
+                button(lat=place.lat long=place.long name=place.name).find-on-map Find on map
 
 script(src="/javascript/accordion-map.js")
