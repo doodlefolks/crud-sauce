@@ -19,6 +19,8 @@ router.get('/:index', function (req, res, next) {
           }
           res.render('places/index');
         });
+      }).catch(function(err) {
+        res.redirect('/')
       });
     } else {
       res.render('places/index');
