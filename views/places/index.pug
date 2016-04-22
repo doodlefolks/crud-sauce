@@ -36,27 +36,31 @@ block content
           h3 Comments
           if user
             if pageData.review
-              form.container.v(method="POST" action=(`/places/${place.id}?_method=PUT`))
-                textarea(name="comment")=pageData.review.comment
-                span Rating:
-                select(name="rating")
-                  option(value=1 selected = (pageData.review.rating === 1)) 1 - (Terrible)
-                  option(value=2 selected = (pageData.review.rating === 2)) 2
-                  option(value=3 selected = (pageData.review.rating === 3)) 3 - (Average)
-                  option(value=4 selected = (pageData.review.rating === 4)) 4
-                  option(value=5 selected = (pageData.review.rating === 5)) 5 - (Awesome)
-                button Submit
+              form(method="POST" action=(`/places/${place.id}?_method=PUT`))
+                div.comment-text
+                  textarea(name="comment")=pageData.review.comment
+                div.review
+                  span Rating:
+                  select(name="rating")
+                    option(value=1 selected = (pageData.review.rating === 1)) 1 - (Terrible)
+                    option(value=2 selected = (pageData.review.rating === 2)) 2
+                    option(value=3 selected = (pageData.review.rating === 3)) 3 - (Average)
+                    option(value=4 selected = (pageData.review.rating === 4)) 4
+                    option(value=5 selected = (pageData.review.rating === 5)) 5 - (Awesome)
+                  button Submit
             else
-              form.container.v(method="POST" action=(`/places/${place.id}`))
-                textarea(name="comment")
-                span Rating:
-                select(name="rating")
-                  option(value=1) 1 - (Terrible)
-                  option(value=2) 2
-                  option(value=3) 3 - (Average)
-                  option(value=4) 4
-                  option(value=5) 5 - (Awesome)
-                button Submit
+              form(method="POST" action=(`/places/${place.id}`))
+                div.comment-text
+                  textarea(name="comment")
+                div.review
+                  span Rating:
+                  select(name="rating")
+                    option(value=1) 1 - (Terrible)
+                    option(value=2) 2
+                    option(value=3) 3 - (Average)
+                    option(value=4) 4
+                    option(value=5) 5 - (Awesome)
+                  button Submit
           else
             section
               | Please login to make comments

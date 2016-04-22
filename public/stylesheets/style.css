@@ -4,7 +4,6 @@
 
 .container {
   display: flex;
-  margin: 0 auto;
 }
 
 .h {
@@ -52,7 +51,7 @@ a {
 }
 
 #sauce {
-  height: 100vh;
+  /*height: 100vh;*/
   width: 40vw;
   overflow: scroll;
   padding: 0 0px 0 50px;
@@ -68,7 +67,6 @@ a {
 div#map {
   height: 450px;
   width: 450px;
-
   border: 1px solid black;
   display: inline-block;;
   margin-right: 5%;
@@ -89,13 +87,19 @@ div.placeOverflow {
 #comments form * {
   margin: 5px 0;
 }
-.comment {
+.comment-text {
   align-items: flex-start;
+  width: 300px;
+}
+.comment-text textarea {
+  width: 300px;
+  height: 100px;
 }
 .review {
   display: flex;
   flex-direction: column;
   margin-left: 10px;
+  width: 150px;
 }
 .review p {
   margin: 3px 0;
@@ -108,4 +112,7 @@ div.placeOverflow {
 
 .theStranger {
   text-align: center;
+}
+.comment {
+  justify-content: flex-end;
 }
