@@ -99,7 +99,8 @@ div.placeOverflow {
   display: flex;
   flex-direction: column;
   margin-left: 10px;
-  width: 150px;
+  margin-bottom: 20px;
+  width: 20em;
 }
 .review p {
   margin: 3px 0;
