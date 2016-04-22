@@ -3,24 +3,10 @@ var infowindow;
 var geocoder;
 var lat;
 var long;
+var markerArr = [];
 
 $(function() {
   $( "#accordion" ).accordion();
-});
-
-$("#easyNav a").click(function(event) {
-
-  var hood = parseInt(($(event.target).parent())[0].id);
-
-  var divPosition = $('h3:nth-of-type(' + (hood + 1) + ')').offset();
-  $('html, body').animate({scrollTop: (divPosition.top - 500)}, "slow");
-
-  $( "#accordion" ).accordion({active: hood});
-
-
-
-
-  console.log(divPosition.top)
 });
 
 function initMap() {
@@ -42,8 +28,10 @@ function initMap() {
     var marker = new google.maps.Marker({
       clicked: false,
       map: map,
-      position: placeLoc
+      position: placeLoc,
+      id: $('.name')[i].value
     });
+    markerArr.push(marker);
     (function (i) {
       google.maps.event.addListener(marker, 'click', function(){
         infowindow.setContent($('.name')[i].value);
@@ -70,6 +58,8 @@ for (var i = 0; i < mapButtons.length; i++) {
       var lat = parseFloat($(this).attr('lat'));
       var long = parseFloat($(this).attr('long'));
       map.setCenter({lat: lat, lng: long});
+      infowindow.setContent($('.name')[i].value);
+      infowindow.open(map, markerArr[i]);
     });
   })(i);
 }
