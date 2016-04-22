@@ -20,7 +20,7 @@ router.get('/:index', function (req, res, next) {
           res.render('places/index');
         });
       }).catch(function(err) {
-        res.redirect('/')
+        res.render('places/index');
       });
     } else {
       res.render('places/index');
