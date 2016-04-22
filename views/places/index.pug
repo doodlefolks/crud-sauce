@@ -22,12 +22,11 @@ block content
           p
             a(href="/auth/facebook") Login with Facebook
 
-    main.container.v#sauce
-
-      section
+    main
+      section#sauce
         h2 #{place.name}
         h3 #{place.category}
-        p #{place.address}, #{place.phone}
+        p #{place.address}, (206) #{place.phone}
         p "#{place.description}"
         if isNaN(place.avgRating)
           p Average rating: No ratings
