@@ -39,7 +39,7 @@ block content
               form(method="POST" action=(`/places/${place.id}?_method=PUT`))
                 div.comment-text
                   textarea(name="comment")=pageData.review.comment
-                div.review
+                div.user-review
                   span Rating:
                   select(name="rating")
                     option(value=1 selected = (pageData.review.rating === 1)) 1 - (Terrible)
@@ -66,7 +66,8 @@ block content
               | Please login to make comments
           each comment in comments
             div.container.h.comment
-              img(src=comment.pic_url alt="Profile picture for commenter")
+              div
+                img(src=comment.pic_url alt="Profile picture for commenter")
               div.review
                 p=comment.comment
                 p Rating: #{comment.rating}
