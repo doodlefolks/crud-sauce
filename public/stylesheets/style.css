@@ -51,7 +51,7 @@ a {
 }
 
 #sauce {
-  /*height: 100vh;*/
+  height: 100vh;
   width: 40vw;
   overflow: scroll;
   padding: 0 0px 0 50px;
